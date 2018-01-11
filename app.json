@@ -1,0 +1,8 @@
+{
+  "name": "ThoroughWebEntertainmentBoard",
+  "description": "Third and last project of TWEB !",
+  "repository": "https://github.com/LuanaMartelli/ThoroughWebEntertainmentBoard",
+  "logo": "",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
