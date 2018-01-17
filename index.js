@@ -24,11 +24,16 @@ app
     const context = {};
     fetchGithub(`https://api.github.com/users/${req.query.username}`)
       .then((user) => {
+        context.userID = user.id;
         context.username = user.login;
+        context.name = user.name;
+        context.avatar = user.avatar_url;
+        context.nbrFollowers = user.followers;
+        context.nbrFollowing = user.following;
         return fetchGithub(user.repos_url);
       })
       .then((repos) => {
-        context.repo = repos[0].full_name;
+        context.nbrRepo = repos.length;
         res.send(context);
       }).catch((error) => {
         console.log('error:');
