@@ -20,7 +20,25 @@ app
   .get('/', (req, res) => {
     res.send('Good Morning Dear Sir !');
   })
-  .post('/gimme', (req, res) => {
+  .get('/repos', (req, res) => {
+    const reposResult = [];
+    fetchGithub(`https://api.github.com/users/${req.query.username}`)
+      .then(user => fetchGithub(user.repos_url))
+      .then((repos) => {
+        for (let i = 0; i < repos.length; i += 1) {
+          reposResult.push({
+            id: repos[i].id,
+            name: repos[i].name,
+            description: repos[i].description,
+            url: repos[i].html_url,
+          });
+        }
+
+        res.send(reposResult);
+      }).catch((error) => {
+        res.send(error);
+      });
+  }).post('/gimme', (req, res) => {
     const context = {};
     fetchGithub(`https://api.github.com/users/${req.query.username}`)
       .then((user) => {
@@ -34,6 +52,13 @@ app
       })
       .then((repos) => {
         context.nbrRepo = repos.length;
+        context.nbrForks = 0;
+        context.nbrCommits = 0;
+        // TODO repos.foreach
+
+        // Create hero
+        // Send hero
+
         res.send(context);
       }).catch((error) => {
         console.log('error:');
