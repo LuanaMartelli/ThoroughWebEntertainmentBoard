@@ -13,6 +13,12 @@ const graphqlClient = new graphql.GraphQLClient('https://api.github.com/graphql'
   },
 });
 
+function createRepos(data) {
+  const repos = [];
+  data.user.repositories.nodes.array.forEach(element => repos.push(element));
+  return repos;
+}
+
 app
   .get('/', (req, res) => {
     const query = `query {
@@ -43,21 +49,33 @@ app
       });
   })
   .get('/repos', (req, res) => {
-    const reposResult = [];
-    fetchGithub(`https://api.github.com/users/${req.query.username}`)
-      .then(user => fetchGithub(user.repos_url))
-      .then((repos) => {
-        for (let i = 0; i < repos.length; i += 1) {
-          reposResult.push({
-            id: repos[i].id,
-            name: repos[i].name,
-            description: repos[i].description,
-            url: repos[i].html_url,
-          });
-        }
+    const variables = `{
+      "username": "${req.query.username}"
+    }`;
 
-        res.send(reposResult);
-      }).catch((error) => {
+    const query = `query($username:String!) {
+      user(login: $username) {
+        repositories(first: 30) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
+            name
+            description
+            url
+          }
+        }
+      }
+    }`;
+
+    graphqlClient.request(query, variables)
+      .then((response) => {
+        const repos = response.user.repositories.nodes;
+        res.send(repos);
+      })
+      .catch((error) => {
         res.send(error);
       });
   }).get('/hero', (req, res) => {
