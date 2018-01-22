@@ -5,6 +5,7 @@ ATTAQUE
 DEFENSE
 VITESSE 
 CHARISME
+INTELLIGENCE
 
 ##Données utilisées :
 
