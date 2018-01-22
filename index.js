@@ -6,20 +6,46 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-function fetchGithub(url) {
+function fetchGithub(url, payload) {
   return rp({
     headers: {
-      Accept: 'application/vnd.github.v3+json',
-      'User-Agent': 'ThoroughWebEntertainmentBoard',
+      Authorization: `bearer ${token}`,
     },
     url,
     json: true,
+    body: payload,
   });
 }
 
 app
   .get('/', (req, res) => {
-    res.send('Good Morning Dear Sir !');
+    const query = `query {
+      repository(owner:"octocat", name:"Hello-World") {
+        issues(last:20, states:CLOSED) {
+          edges {
+            node {
+              title
+              url
+              labels(first:5) {
+                edges {
+                  node {
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`;
+
+    fetchGithub('https://api.github.com/graphql', query)
+      .then((response) => {
+        res.send(response);
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   })
   .get('/repos', (req, res) => {
     const reposResult = [];
