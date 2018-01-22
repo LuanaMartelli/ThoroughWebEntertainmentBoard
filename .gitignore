@@ -60,5 +60,8 @@ typings/
 # Excel files
 .xlsx
 
+#Visual Code Studio
+.vscode
+
 # github config
 userToken.json
