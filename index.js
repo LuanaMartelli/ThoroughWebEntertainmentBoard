@@ -38,8 +38,9 @@ app
       }).catch((error) => {
         res.send(error);
       });
-  }).post('/gimme', (req, res) => {
+  }).get('/hero', (req, res) => {
     const context = {};
+    let issuesPromise;
     fetchGithub(`https://api.github.com/users/${req.query.username}`)
       .then((user) => {
         context.userID = user.id;
@@ -48,19 +49,40 @@ app
         context.avatar = user.avatar_url;
         context.nbrFollowers = user.followers;
         context.nbrFollowing = user.following;
-        return fetchGithub(user.repos_url);
+        return fetchGithub(`https://api.github.com/repos/${req.query.username}/${req.query.repo}`);
       })
-      .then((repos) => {
-        context.nbrRepo = repos.length;
-        context.nbrForks = 0;
-        context.nbrCommits = 0;
-        // TODO repos.foreach
+      .then((repo) => {
+        context.repoName = repo.name;
+        context.nbrForks = repo.forks_count;
 
-        // Create hero
-        // Send hero
+        // res.send(context);
+        // Saving the issues promise for future use
+        const number = '{/number}';
+        const issuesUrl = repo.issues_url.substring(
+          0,
+          repo.issues_url.length - number.length
+        );
+        issuesPromise = fetchGithub(issuesUrl);
+
+        // Creating the url for accessing the list of commits
+        const sha = '{/sha}';
+        const commitsUrl = repo.commits_url.substring(
+          0,
+          repo.commits_url.length - sha.length
+        );
+
+        return fetchGithub(commitsUrl);
+      })
+      .then((commits) => {
+        context.nbrCommits = commits.length;
+        return issuesPromise;
+      })
+      .then((issues) => {
+        context.nbrIssues = issues.length;
 
         res.send(context);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log('error:');
         console.log(error);
         res.send(error);
