@@ -59,3 +59,6 @@ typings/
 
 # Excel files
 .xlsx
+
+# github config
+userToken.json
