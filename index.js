@@ -1,21 +1,17 @@
-const { token } = require('userToken.json');
+const { token } = require('./userToken.json');
 const express = require('express');
-const rp = require('request-promise');
+const graphql = require('graphql-request');
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-function fetchGithub(url, payload) {
-  return rp({
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-    url,
-    json: true,
-    body: payload,
-  });
-}
+const graphqlClient = new graphql.GraphQLClient('https://api.github.com/graphql', {
+  headers: {
+    Authorization: `bearer ${token}`,
+    'User-Agent': 'ThoroughWebEntertainmentBoard',
+  },
+});
 
 app
   .get('/', (req, res) => {
@@ -39,11 +35,10 @@ app
       }
     }`;
 
-    fetchGithub('https://api.github.com/graphql', query)
+    graphqlClient.request(query, {})
       .then((response) => {
         res.send(response);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         res.send(error);
       });
   })
