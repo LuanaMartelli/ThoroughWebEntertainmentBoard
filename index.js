@@ -1,4 +1,4 @@
-const { token } = require('userToken.json');
+const { token } = require('./userToken.json');
 const express = require('express');
 const rp = require('request-promise');
 
