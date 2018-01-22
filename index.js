@@ -43,7 +43,7 @@ function createHero(data) {
         (achievments.issues * issueWeight) +
         (achievments.repos * repoWeight) +
         (achievments.followers * followerWeight);
-  const totalLevel = Math.round(0.3 - Math.sqrt(totalXP));
+  const totalLevel = Math.round(0.3 * Math.sqrt(totalXP));
   const totalHP = achievments.commits;
   const totalAttack = Math.round(((1 / 3) * achievments.commits) + (achievments.issues * 5));
   const totalDefense = achievments.repos * 15;
@@ -70,34 +70,6 @@ function createHero(data) {
 }
 
 app
-  .get('/', (req, res) => {
-    const query = `query {
-      repository(owner:"octocat", name:"Hello-World") {
-        issues(last:20, states:CLOSED) {
-          edges {
-            node {
-              title
-              url
-              labels(first:5) {
-                edges {
-                  node {
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }`;
-
-    graphqlClient.request(query, {})
-      .then((response) => {
-        res.send(response);
-      }).catch((error) => {
-        res.send(error);
-      });
-  })
   .get('/repos', (req, res) => {
     const variables = `{
       "username": "${req.query.username}"
