@@ -9,10 +9,10 @@ app
   .use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', path.join(__dirname, '/views'));
-app.engine('php', phpExpress.engine);
-app.set('view engine', 'php');
+//app.engine('php', phpExpress.engine);
+//app.set('view engine', 'php');
+//app.all(/.+\.php$/, phpExpress.router);
 
-app.all(/.+\.php$/, phpExpress.router);
 function fetchGithub(url) {
   return rp({
     headers: {
