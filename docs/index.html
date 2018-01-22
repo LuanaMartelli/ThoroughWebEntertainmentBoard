@@ -83,6 +83,14 @@
             <input type="text" class="form-control-plantext" id="inputPassword" placeholder="Username">
           </div>
           <button type="button" class="btn btn-primary mb-2" onclick="fetchHero()">Confirm identity</button>
+
+          <div class="btn-group mx-sm-3 btn-primary mb-2">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Scrollable Menu <span class="caret"></span></button>
+              <ul class="dropdown-menu scrollable-menu" role="menu">
+                  <li>Please load user</li>
+              </ul>
+          </div>
+
         </form>
 
       </div>
@@ -213,13 +221,6 @@
                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                   <label>Email Address</label>
                   <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address.">
-                  <p class="help-block text-danger"></p>
-                </div>
-              </div>
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                  <label>Phone Number</label>
-                  <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
                   <p class="help-block text-danger"></p>
                 </div>
               </div>
