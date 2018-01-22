@@ -162,25 +162,23 @@
                   <td>
                     <table class="table table-bordered">
                       <th>Achivements</th>
-                      <tr><td><img src="./img/avatars/dragon1.png" style="width:40px;height:40px;" /> 3000 commits</td></tr>
-                      <tr><td><img src="./img/avatars/dragon.png" style="width:40px;height:40px;" /> 20 comments</td></tr>
-                      <tr><td><img src="./img/avatars/dragon2.png" style="width:40px;height:40px;" /> 300 followers</td></tr>
+                      <tr><td><img src="./img/avatars/dragon.png" style="width:40px;height:40px;" /> <span id="commitsAchievements"></div></td></tr>
+                      <tr><td><img src="./img/avatars/dragon1.png" style="width:40px;height:40px;" /> <span id="followersAchievements"></div></td></tr>
+                      <tr><td><img src="./img/avatars/dragon2.png" style="width:40px;height:40px;" /> <span id="repositoriesAchievements"></div></td></tr>
                     </table>
                   </td>
                   <!-- Graph of stats -->
-                  <td>Graph of Stats</td>
+                  <td>Graph of Stats
+                    <div class="d3Graph">
+
+                    </div>
+                  </td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
-      </div>
-      
-
-      <h4 class="text-uppercase mb-4">Hero Stats</h4>
-      <div class="d3Graph">
-
-      </div>
+      </div>      
     </section>
 
     <!-- About Section -->
@@ -322,6 +320,7 @@
     <!-- Custom scripts -->
     <script src="js/fetchHero.js"></script>
     <script src="js/graphUser.js"></script>
+    <script src="js/achievements.js"></script>
 
   </body>
 

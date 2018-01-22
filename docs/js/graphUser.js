@@ -1,17 +1,7 @@
 function graphUser(hero) {
 
-  // to comment for true values use
-  hero = [
-    { name: "PV", value: .10 },
-    { name: "ATTAQUE", value: .15 },
-    { name: "DEFENSE", value: .05 },
-    { name: "VITESSE", value: .08 },
-    { name: "CHARISME", value: .03 },
-    { name: "INTELLIGENCE", value: .12 },
-  ]
-
-  var width = 960,
-    height = 500,
+  var width = 400,
+    height = 400,
     barHeight = height / 2 - 40;
 
   var formatNumber = d3.format("%");
@@ -111,3 +101,12 @@ function graphUser(hero) {
     .text(function (d) { return d.toUpperCase(); });
 
 }
+
+graphUser([
+  { name: "PV", value: .10 },
+  { name: "ATTAQUE", value: .15 },
+  { name: "DEFENSE", value: .05 },
+  { name: "VITESSE", value: .08 },
+  { name: "CHARISME", value: .03 },
+  { name: "INTELLIGENCE", value: .12 },
+]);
