@@ -92,7 +92,7 @@
         </div>
       </form>
     </div>
-
+    <hr/>
     <div class="container col-lg-10 col-lg-offset-1">
       <div class="row">
         <h3>Hero Stats</h3>
@@ -112,27 +112,27 @@
             </thead>
             <tr>
               <th scope="row">Level</th>
-              <td>0</td>
+              <td id="level">0</td>
               <th scope="row">Attack</th>
-              <td>0</td>
-            </tr>
-            <tr>
-              <th scope="row">Life</th>
-              <td>0</td>
-              <th scope="row">Defense</th>
-              <td>0</td>
+              <td id="attack">0</td>
             </tr>
             <tr>
               <th scope="row">XP</th>
-              <td>0</td>
-              <th scope="row">Speed</th>
-              <td>0</td>
+              <td id="xp">0</td>
+              <th scope="row">Defense</th>
+              <td id="defense">0</td>
             </tr>
             <tr>
               <th scope="row">Life</th>
-              <td>0</td>
+              <td id="hp">0</td>
+              <th scope="row">Speed</th>
+              <td id="speed">0</td>
+            </tr>
+            <tr>
+              <th scope="row">Life</th>
+              <td id="life">0</td>
               <th scope="row">Charisma</th>
-              <td>0</td>
+              <td id="charisma">0</td>
             </tr>
           </table>
         </div>
@@ -298,8 +298,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 
   <!-- Custom scripts -->
-  <script src="js/fetchHero.js"></script>
   <script src="js/graphUser.js"></script>
+  <script src="js/fetchHero.js"></script>
   <script src="js/achievements.js"></script>
 
 </body>

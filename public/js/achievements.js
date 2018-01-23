@@ -28,9 +28,3 @@ function setAchievements(hero) {
   addAchievement('followers', calculateStat(5, hero.followers));
   addAchievement('repositories', calculateStat(2, hero.repositories));
 }
-
-setAchievements({
-  commits: 8754,
-  followers: 78,
-  repositories: 1,
-});

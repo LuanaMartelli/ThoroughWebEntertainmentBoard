@@ -100,12 +100,3 @@ function graphUser(hero) {
     .attr('startOffset', (d, i) => `${((i * 100) / numBars) + (50 / numBars)}%`)
     .text(d => d.toUpperCase());
 }
-
-graphUser([
-  { name: 'PV', value: 0.10 },
-  { name: 'ATTAQUE', value: 0.15 },
-  { name: 'DEFENSE', value: 0.05 },
-  { name: 'VITESSE', value: 0.08 },
-  { name: 'CHARISME', value: 0.03 },
-  { name: 'INTELLIGENCE', value: 0.12 },
-]);
