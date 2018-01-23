@@ -5,27 +5,25 @@ function fetchRepos() {
   const username = $('#inputUsername').val();
   $.get('https://quiet-depths-67700.herokuapp.com/repos', { username })
     .done((data) => {
-      alert(`Data Loaded: ${data}`);
+      let options = '';
+      data.forEach((element) => {
+        options += `<button class="dropdown-item" type="button" onclick="fetchHero('${element.name}');">${element.name}</button>`;
+      });
+
+      $('#selectRepo')
+        .find('button')
+        .remove()
+        .end()
+        .append(options);
     });
 }
 
 function fetchHero(repo) {
   const username = $('#inputUsername').val();
 
-  $.get('https://quiet-depths-67700.herokuapp.com/hero', { username })
+  $.get('https://quiet-depths-67700.herokuapp.com/hero', { username, repo })
     .done((data) => {
-      alert(`Data Loaded: ${data}`);
+      
     });
-
-  const hero = {
-    xp: 10000,
-    level: 5,
-    pv: 100,
-    attack: 10,
-    defense: 10,
-    speed: 2,
-    charisma: 5,
-    intel: 3,
-  };
 }
 

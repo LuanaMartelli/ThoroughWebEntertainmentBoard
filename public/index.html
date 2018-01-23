@@ -81,10 +81,14 @@
           <input type="text" class="form-control" id="inputUsername" placeholder="Username">
         </div>
         <button type="button" class="btn btn-primary mb-2" onclick="fetchRepos()">Confirm user</button>
-        <div class="form-group mx-sm-3 mb-2">
-            <select class="form-control" id="selectRepo">
-              <option disabled >Choose a user first</option>
-            </select>
+        <div class="form-group mx-sm-3 mb-2 col-lg-3">
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Repositories
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="selectRepo">
+              </div>
+            </div>
         </div>
       </form>
     </div>
