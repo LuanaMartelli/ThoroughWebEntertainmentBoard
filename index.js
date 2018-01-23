@@ -3,10 +3,13 @@
 const { token } = require('./userToken.json');
 const express = require('express');
 const graphql = require('graphql-request');
+const path = require('path');
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 const graphqlClient = new graphql.GraphQLClient('https://api.github.com/graphql', {
   headers: {
