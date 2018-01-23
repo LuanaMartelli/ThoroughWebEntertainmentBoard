@@ -2,7 +2,7 @@
 /* global $ */
 
 function fetchRepos() {
-  const username = $('#inputPassword').val();
+  const username = $('#inputUsername').val();
   $.get('https://quiet-depths-67700.herokuapp.com/repos', { username })
     .done((data) => {
       alert(`Data Loaded: ${data}`);
@@ -10,7 +10,7 @@ function fetchRepos() {
 }
 
 function fetchHero(repo) {
-  const username = $('#inputPassword').val();
+  const username = $('#inputUsername').val();
 
   $.get('https://quiet-depths-67700.herokuapp.com/hero', { username })
     .done((data) => {

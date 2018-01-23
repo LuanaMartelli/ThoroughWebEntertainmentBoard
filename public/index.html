@@ -27,10 +27,6 @@
   <!-- Css for D3 -->
   <link href="css/d3.css" rel="stylesheet">
 
-  <!-- css for bootstrap-select -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css"
-  />
-
 </head>
 
 <body id="page-top">
@@ -85,15 +81,10 @@
           <input type="text" class="form-control" id="inputUsername" placeholder="Username">
         </div>
         <button type="button" class="btn btn-primary mb-2" onclick="fetchRepos()">Confirm user</button>
-        <div class="btn-group mx-sm-3 mb-2">
-          <select class="selectpicker" data-style="btn-primary" data-live-search="true">
-            <option>Mustard</option>
-            <option>Ketchup</option>
-            <option>Relish</option>
-            <option>Tent</option>
-            <option>Flashlight</option>
-            <option>Toilet Paper</option>
-          </select>
+        <div class="form-group mx-sm-3 mb-2">
+            <select class="form-control" id="selectRepo">
+              <option disabled >Choose a user first</option>
+            </select>
         </div>
       </form>
     </div>
@@ -301,9 +292,6 @@
 
   <!-- D3 library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-
-  <!-- bootstrap-select -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
   <!-- Custom scripts -->
   <script src="js/fetchHero.js"></script>
