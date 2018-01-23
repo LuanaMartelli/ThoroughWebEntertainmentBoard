@@ -9,6 +9,8 @@ function graphUser(hero) {
   const color = d3.scale.ordinal()
     .range(['#8dd3c7', '#bebada', '#fb8072', '#80b1d3', '#fdb462', '#b3de69', '#fccde5', '#d9d9d9', '#bc80bd', '#ccebc5', '#ffed6f']);
 
+  d3.select('svg').remove();
+
   const svg = d3.select('.d3Graph').append('svg')
     .attr('width', width)
     .attr('height', height)
