@@ -168,25 +168,23 @@
                     <table class="table table-bordered">
                       <th>Achivements</th>
                       <!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
-                      <tr><td><img src="./img/avatars/dragon1.png" style="width:40px;height:40px;" /> 3000 commits</td></tr>
-                      <tr><td><img src="./img/avatars/dragon.png" style="width:40px;height:40px;" /> 20 comments</td></tr>
-                      <tr><td><img src="./img/avatars/dragon2.png" style="width:40px;height:40px;" /> 300 followers</td></tr>
+                      <tr><td><img src="./img/avatars/dragon.png" style="width:40px;height:40px;" /> <span id="commitsAchievements"></div></td></tr>
+                      <tr><td><img src="./img/avatars/dragon1.png" style="width:40px;height:40px;" /> <span id="followersAchievements"></div></td></tr>
+                      <tr><td><img src="./img/avatars/dragon2.png" style="width:40px;height:40px;" /> <span id="repositoriesAchievements"></div></td></tr>
                     </table>
                   </td>
                   <!-- Graph of stats -->
-                  <td>Graph of Stats</td>
+                  <td>Graph of Stats
+                    <div class="d3Graph">
+
+                    </div>
+                  </td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
-      </div>
-      
-
-      <h4 class="text-uppercase mb-4">Hero Stats</h4>
-      <div class="d3Graph">
-
-      </div>
+      </div>      
     </section>
 
     <!-- About Section -->
@@ -295,6 +293,7 @@
     <!-- Custom scripts -->
     <script src="js/fetchHero.js"></script>
     <script src="js/graphUser.js"></script>
+    <script src="js/achievements.js"></script>
 
   </body>
 
