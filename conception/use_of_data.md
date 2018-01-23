@@ -10,9 +10,10 @@ INTELLIGENCE
 ##Données utilisées :
 
 - Nombre de commits 
-- Nombre d'issues ouvertes
+- Nombre d'issues ouvertes / fermées
 - Nombre de repos
-- Nombre followers
+- Nombre followers + following
+- Nombre de forks
 
 À chaque objectif atteint, on reçoit un certain nombre de points d'expériences. À chaque augmentation de niveau on obtient des points à distribuer parmi nos stats. 
 
