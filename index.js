@@ -91,6 +91,9 @@ app
             name
             description
             url
+            owner {
+              login
+            }
           }
         }
       }
@@ -98,7 +101,13 @@ app
 
     graphqlClient.request(query, variables)
       .then((response) => {
-        const repos = response.user.repositories.nodes;
+        const temp = response.user.repositories.nodes;
+        const repos = [];
+        for (let i = 0; i < temp.length; i += 1) {
+          if (temp[i].owner.login === req.query.username) {
+            repos.push(temp[i]);
+          }
+        }
         res.send(repos);
       })
       .catch((error) => {
