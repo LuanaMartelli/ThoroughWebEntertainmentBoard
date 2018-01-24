@@ -46,11 +46,11 @@ function fetchHero(repo) {
 
       $('#level').html(hero.stats.level);
       $('#attack').html(hero.stats.attack);
-      $('#hp').html(hero.stats.hp);
-      $('#defense').html(hero.stats.defense);
       $('#xp').html(hero.stats.xp);
+      $('#defense').html(hero.stats.defense);
+      $('#hp').html(hero.stats.hp);
       $('#speed').html(hero.stats.speed);
-      $('#life').html(hero.stats.hp);
+      $('#intel').html(hero.stats.intel);
       $('#charisma').html(hero.stats.level);
     });
 }
