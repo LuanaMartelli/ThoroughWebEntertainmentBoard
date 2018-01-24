@@ -1,17 +1,19 @@
 /* global d3 */
-function graphUser(hero) {
+/*
+  Taken from https://bl.ocks.org/bricedev/8aaef92e64007f882267
+*/
+
+function radialGraph(hero, format, className) {
   const width = 300;
   const height = 300;
   const barHeight = (height / 2) - 40;
 
-  const formatNumber = d3.format('%');
+  const formatNumber = d3.format(format);
 
   const color = d3.scale.ordinal()
     .range(['#8dd3c7', '#bebada', '#fb8072', '#80b1d3', '#fdb462', '#b3de69', '#fccde5', '#d9d9d9', '#bc80bd', '#ccebc5', '#ffed6f']);
 
-  d3.select('svg').remove();
-
-  const svg = d3.select('.d3Graph').append('svg')
+  const svg = d3.select(className).append('svg')
     .attr('width', width)
     .attr('height', height)
     .append('g')
@@ -68,11 +70,11 @@ function graphUser(hero) {
     .style('stroke', 'black')
     .style('stroke-width', '1.5px');
 
-  const lines = svg.selectAll('line')
+  svg.selectAll('line')
     .data(keys)
     .enter().append('line')
     .attr('y2', -barHeight - 20)
-    .style('stroke', 'black')
+    .style('stroke', 'grey')
     .style('stroke-width', '.5px')
     .attr('transform', (d, i) => `rotate(${(i * 360) / numBars})`);
 
@@ -101,4 +103,26 @@ function graphUser(hero) {
     .attr('xlink:href', '#label-path')
     .attr('startOffset', (d, i) => `${((i * 100) / numBars) + (50 / numBars)}%`)
     .text(d => d.toUpperCase());
+}
+
+function graphUser(hero) {
+
+  d3.select('svg').remove();
+  
+  let total = 0;
+
+  hero.forEach((stat) => {
+    total += stat.value;
+  });
+
+  const heroRelative = [];
+
+  hero.forEach((stat) => {
+    heroRelative.push({
+      name: stat.name,
+      value: stat.value / total,
+    });
+  });
+
+  radialGraph(heroRelative, '%', '.d3GraphRelative');
 }

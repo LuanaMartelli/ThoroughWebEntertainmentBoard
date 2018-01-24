@@ -29,12 +29,12 @@ function fetchHero(repo) {
         + hero.stats.charisma + hero.stats.intel;
 
       graphUser([
-        { name: 'HP', value: hero.stats.hp / sumStats },
-        { name: 'ATTACK', value: hero.stats.attack / sumStats },
-        { name: 'DEFENSE', value: hero.stats.defense / sumStats },
-        { name: 'SPEED', value: hero.stats.speed / sumStats },
-        { name: 'CHARISMA', value: hero.stats.charisma / sumStats },
-        { name: 'INTELLIGENCE', value: hero.stats.intel / sumStats },
+        { name: 'HP', value: hero.stats.hp },
+        { name: 'ATTACK', value: hero.stats.attack },
+        { name: 'DEFENSE', value: hero.stats.defense },
+        { name: 'SPEED', value: hero.stats.speed },
+        { name: 'CHARISMA', value: hero.stats.charisma },
+        { name: 'INTELLIGENCE', value: hero.stats.intel },
       ]);
 
 

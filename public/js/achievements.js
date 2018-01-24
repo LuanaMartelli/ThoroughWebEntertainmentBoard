@@ -15,7 +15,7 @@ function calculateStat(root, value) {
 
 function addAchievement(name, stat) {
   let Message = '';
-  if (stat.achieved === 1) {
+  if (stat.achieved <= 1) {
     Message += `You must reach <strong>${stat.next}</strong> ${name} to get this achievement. Only <strong>${stat.missing}</strong> more!`;
   } else {
     Message += `You got to <strong>${stat.achieved}</strong> ${name} (you have ${stat.value})! <strong>${stat.missing}</strong> left until the next (${stat.next}).`;

@@ -48,11 +48,11 @@ function createHero(data) {
     (achievments.followers * followerWeight);
   const totalLevel = Math.round(0.3 * Math.sqrt(totalXP));
   const totalHP = Math.round(((1 / 4) * achievments.commits));
-  const totalAttack = Math.round(((1 / 5) * achievments.commits) + (achievments.issues * 5));
-  const totalDefense = achievments.repos * 1.25;
-  const totalSpeed = achievments.followers * 10;
-  const totalCharisma = (achievments.followers * 5) + (achievments.forks * 5);
-  const totalIntel = achievments.following * 5;
+  const totalAttack = Math.round(((1 / 8) * achievments.commits) + (achievments.issues * 5));
+  const totalDefense = Math.round(((1 / 16) * achievments.commits)) + achievments.repos * 1.25;
+  const totalSpeed = Math.round(((1 / 8) * achievments.commits)) + achievments.followers * 10;
+  const totalCharisma = Math.round(((1 / 16) * achievments.commits)) + (achievments.followers * 5) + (achievments.forks * 5);
+  const totalIntel = Math.round(((1 / 8) * achievments.commits)) + achievments.following * 5;
 
   const stats = {
     xp: totalXP,
