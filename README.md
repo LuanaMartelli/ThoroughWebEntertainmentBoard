@@ -28,9 +28,6 @@ Then, the level is calculated using a formula and displayed along a list of stat
    
 The data we collected can influence thoses stats with different ratios. The stats are also visible in a d3 radial graph by relatives values.
 
-## Link to website
-https://luanamartelli.github.io/ThoroughWebEntertainmentBoard/
-
 ## Heroku 
 https://quiet-depths-67700.herokuapp.com/
 
