@@ -9,8 +9,10 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+// Used to expose the main web page in heroku
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Creating the graphQL client to make qraphQL calls on the github API
 const graphqlClient = new graphql.GraphQLClient('https://api.github.com/graphql', {
   headers: {
     Authorization: `bearer ${token}`,
@@ -18,7 +20,9 @@ const graphqlClient = new graphql.GraphQLClient('https://api.github.com/graphql'
   },
 });
 
+// Creating a hero object with the data fetched from github
 function createHero(data) {
+  // Creating the sub-object with data used for achievments
   const achievments = {
     commits: data.user.repository.ref.target.history.totalCount,
     issues: data.user.repository.issues.totalCount,
@@ -27,6 +31,7 @@ function createHero(data) {
     following: data.user.following.totalCount,
     forks: data.user.repository.forkCount,
   };
+  // Creating the sub-object with informations about the user
   const userInfos = {
     id: data.user.id,
     username: data.user.login,
@@ -36,6 +41,7 @@ function createHero(data) {
     repo: data.user.repository.name,
   };
 
+  // Creating the sub-object representing the hero's stats
   const commitWeight = 1;
   const issueWeight = 15;
   const repoWeight = 50;
@@ -49,10 +55,11 @@ function createHero(data) {
   const totalLevel = Math.round(0.3 * Math.sqrt(totalXP));
   const totalHP = Math.round(((1 / 4) * achievments.commits));
   const totalAttack = Math.round(((1 / 8) * achievments.commits) + (achievments.issues * 5));
-  const totalDefense = Math.round(((1 / 16) * achievments.commits)) + achievments.repos * 1.25;
-  const totalSpeed = Math.round(((1 / 8) * achievments.commits)) + achievments.followers * 10;
-  const totalCharisma = Math.round(((1 / 16) * achievments.commits)) + (achievments.followers * 5) + (achievments.forks * 5);
-  const totalIntel = Math.round(((1 / 8) * achievments.commits)) + achievments.following * 5;
+  const totalDefense = Math.round(((1 / 16) * achievments.commits)) + (achievments.repos * 1.25);
+  const totalSpeed = Math.round(((1 / 8) * achievments.commits)) + (achievments.followers * 10);
+  const totalCharisma = Math.round(((1 / 16) * achievments.commits)) + (achievments.followers * 5)
+                          + (achievments.forks * 5);
+  const totalIntel = Math.round(((1 / 8) * achievments.commits)) + (achievments.following * 5);
 
   const stats = {
     xp: totalXP,
@@ -65,6 +72,7 @@ function createHero(data) {
     intel: totalIntel,
   };
 
+  // Creation of the hero
   return {
     stats,
     achievments,
@@ -74,6 +82,8 @@ function createHero(data) {
 
 app
   .get('/repos', (req, res) => {
+    // /repos endpoint used to retrieve the user's repos
+
     const variables = `{
       "username": "${req.query.username}"
     }`;
@@ -99,6 +109,7 @@ app
       }
     }`;
 
+    // We're interested in the user's repos where he's the owner
     graphqlClient.request(query, variables)
       .then((response) => {
         const temp = response.user.repositories.nodes;
@@ -108,12 +119,15 @@ app
             repos.push(temp[i]);
           }
         }
+
+        // We send the list of repositories
         res.send(repos);
       })
       .catch((error) => {
         res.send(error);
       });
   }).get('/hero', (req, res) => {
+    // /hero endpoint used to retrieve the hero built from the user's repo
     const variables = `{
       "username": "${req.query.username}",
       "repo": "${req.query.repo}"
